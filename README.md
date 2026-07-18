@@ -4,6 +4,9 @@
 
 AlgoShelf is an interactive sorting algorithm visualizer built using **React**, **Vite**, and **Tailwind CSS**. It helps students understand how sorting algorithms work by showing every comparison, swap, pass, and pseudocode step in real time.
 
+## 🌐 Live Demo
+
+[![Live Demo](https://img.shields.io/badge/Live-Demo-00C853?style=for-the-badge)](https://algo-shelf.vercel.app)
 ---
 
 ## ✨ Features
