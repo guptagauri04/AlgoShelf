@@ -308,6 +308,49 @@ function App() {
     return i + 1
   }
 
+  const quickSort = async (arr, low, high) => {
+
+  if (stopSortingRef.current) return
+
+  if (low >= high) {
+    if (low === high) {
+      setSortedIndices(prev => [...new Set([...prev, low])])
+    }
+    return
+  }
+
+  setCurrentPass(prev => prev + 1)
+
+  setCurrentLine(1)
+
+  setCurrentStep(
+    `Sorting subarray [${low} - ${high}]`
+  )
+
+  await sleep(speed / 2)
+
+  const pivotIndex = await partition(arr, low, high)
+
+  if (stopSortingRef.current) return
+
+  setCurrentLine(3)
+
+  setCurrentStep(
+    `Recursively sorting left partition`
+  )
+
+  await quickSort(arr, low, pivotIndex - 1)
+
+  if (stopSortingRef.current) return
+
+  setCurrentLine(4)
+
+  setCurrentStep(
+    `Recursively sorting right partition`
+  )
+
+  await quickSort(arr, pivotIndex + 1, high)
+}
 
   const quickSortStart = async () => {
     if (isSorting) return
