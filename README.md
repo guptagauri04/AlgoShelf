@@ -1,3 +1,8 @@
+![React](https://img.shields.io/badge/React-19-blue)
+![Vite](https://img.shields.io/badge/Vite-7-purple)
+![TailwindCSS](https://img.shields.io/badge/Tailwind-CSS-38BDF8)
+![License](https://img.shields.io/badge/License-MIT-green)
+
 # 🚀 AlgoShelf
 
 > Learn Sorting Algorithms Visually with Interactive Animations
@@ -7,6 +12,8 @@ AlgoShelf is an interactive sorting algorithm visualizer built using **React**, 
 ## 🌐 Live Demo
 
 [![Live Demo](https://img.shields.io/badge/Live-Demo-00C853?style=for-the-badge)](https://algo-shelf.vercel.app)
+
+👉 **https://algo-shelf.vercel.app**
 ---
 
 ## ✨ Features
@@ -128,6 +135,9 @@ Building AlgoShelf helped me understand:
 - Animation Synchronization
 
 ---
+## 📄 License
+
+This project is licensed under the MIT License.
 
 ## 👩‍💻 Author
 
