@@ -61,7 +61,7 @@ AlgoShelf is an interactive sorting algorithm visualizer built using **React**, 
 
 ### Pseudocode Synchronization
 
-<img width="648" height="371" alt="pseudocode-synchronisation" src="https://github.com/user-attachments/assets/7365eb4e-4be5-4075-a446-6b842027e7c0" />
+<img width="692" height="771" alt="pseudocode-synchronisation" src="https://github.com/user-attachments/assets/7365eb4e-4be5-4075-a446-6b842027e7c0" />
 
 ---
 
