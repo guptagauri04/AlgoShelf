@@ -13,7 +13,7 @@ const books = [
     title: "Arrays",
     description: "Master the building block of every algorithm.",
     icon: Database,
-    link: "/learn/arrays",
+    link: "/arrays/traversal",
     spine: "#B3875D",
     iconBg: "#F4E7D8",
     iconColor: "#8B5A2B",
