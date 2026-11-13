@@ -17,6 +17,9 @@ import HeapSort from "./modules/sorting/pages/HeapSort";
 // Searching Module
 import SearchingHome from "./modules/searching/pages/SearchingHome";
 
+// Linked List Module
+import SinglyLinkedList from "./modules/linked-list/pages/SinglyLinkedList";
+
 // Scroll Helper
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -41,6 +44,9 @@ function App() {
 
         {/* Searching */}
         <Route path="/searching" element={<SearchingHome />} />
+
+        {/* Linked List */}
+        <Route path="/linked-list" element={<SinglyLinkedList />} />
 
         {/* 404 */}
         <Route path="*" element={<NotFound />} />
