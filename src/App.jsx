@@ -17,6 +17,9 @@ import HeapSort from "./modules/sorting/pages/HeapSort";
 // Searching Module
 import SearchingHome from "./modules/searching/pages/SearchingHome";
 
+// Arrays Module
+import ArraysHome from "./modules/arrays/pages/ArraysHome";
+
 // Scroll Helper
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -41,6 +44,9 @@ function App() {
 
         {/* Searching */}
         <Route path="/searching" element={<SearchingHome />} />
+
+        {/* Arrays */}
+        <Route path="/learn/arrays" element={<ArraysHome />} />
 
         {/* 404 */}
         <Route path="*" element={<NotFound />} />
