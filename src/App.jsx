@@ -19,6 +19,8 @@ import SearchingHome from "./modules/searching/pages/SearchingHome";
 
 // Linked List Module
 import SinglyLinkedList from "./modules/linked-list/pages/SinglyLinkedList";
+// Arrays Module
+import ArraysHome from "./modules/arrays/pages/ArraysHome";
 
 // Scroll Helper
 import ScrollToTop from "./components/ScrollToTop";
@@ -47,6 +49,8 @@ function App() {
 
         {/* Linked List */}
         <Route path="/linked-list" element={<SinglyLinkedList />} />
+        {/* Arrays */}
+        <Route path="/learn/arrays" element={<ArraysHome />} />
 
         {/* 404 */}
         <Route path="*" element={<NotFound />} />
