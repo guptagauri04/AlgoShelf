@@ -20,6 +20,12 @@ function Learn() {
         description="Learn Linear Search and Binary Search through interactive visualizations."
         path="/learn/searching"
       />
+
+      <TopicCard
+        title="🌳 Tree Algorithms"
+        description="Learn Inorder, Preorder, and Postorder binary tree traversals through interactive visualizations."
+        path="/learn/trees"
+      />
     </div>
   );
 }
