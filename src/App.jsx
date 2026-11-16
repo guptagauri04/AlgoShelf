@@ -18,6 +18,8 @@ import HeapSort from "./modules/sorting/pages/HeapSort";
 import SearchingHome from "./modules/searching/pages/SearchingHome";
 import LinearSearch from "./modules/searching/pages/LinearSearch";
 
+// Linked List Module
+import SinglyLinkedList from "./modules/linked-list/pages/SinglyLinkedList";
 // Arrays Module
 import ArraysHome from "./modules/arrays/pages/ArraysHome";
 import ArrayOperations from "./modules/arrays/pages/ArrayOperations";
@@ -48,6 +50,8 @@ function App() {
         <Route path="/searching" element={<SearchingHome />} />
         <Route path="/searching/linear" element={<LinearSearch />} />
 
+        {/* Linked List */}
+        <Route path="/linked-list" element={<SinglyLinkedList />} />
         {/* Arrays */}
         <Route path="/learn/arrays" element={<ArraysHome />} />
         <Route path="/learn/arrays/operations" element={<ArrayOperations />} />
