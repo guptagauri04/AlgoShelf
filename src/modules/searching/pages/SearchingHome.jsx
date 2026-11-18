@@ -22,7 +22,6 @@ export default function SearchingHome() {
       complexity: "O(log n)",
       difficulty: "Beginner",
       path: "/searching/binary",
-      comingSoon: true,
     },
   ];
 

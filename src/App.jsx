@@ -17,6 +17,7 @@ import HeapSort from "./modules/sorting/pages/HeapSort";
 // Searching Module
 import SearchingHome from "./modules/searching/pages/SearchingHome";
 import LinearSearch from "./modules/searching/pages/LinearSearch";
+import BinarySearch from "./modules/searching/pages/BinarySearch";
 
 // Arrays Module
 import ArraysHome from "./modules/arrays/pages/ArraysHome";
@@ -51,6 +52,7 @@ function App() {
         {/* Searching */}
         <Route path="/searching" element={<SearchingHome />} />
         <Route path="/searching/linear" element={<LinearSearch />} />
+        <Route path="/searching/binary" element={<BinarySearch />} />
 
         {/* Arrays */}
         <Route path="/learn/arrays" element={<ArraysHome />} />
