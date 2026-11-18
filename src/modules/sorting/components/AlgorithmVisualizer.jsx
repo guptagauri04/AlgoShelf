@@ -325,7 +325,7 @@ export default function AlgorithmVisualizer({
       });
     }
 
-  }, [currentStep, steps]);
+  }, [currentStep, steps, algorithm?.title]);
 
   const progress =
     steps.length > 0

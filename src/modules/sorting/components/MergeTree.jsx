@@ -1,5 +1,3 @@
-import React from "react";
-
 function splitArray(arr, start = 0) {
   const end = start + arr.length - 1;
 

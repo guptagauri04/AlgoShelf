@@ -5,7 +5,7 @@ import {
     Scale,
     Activity,
 } from "lucide-react";
-import ArrayBars from "./ArrayBars";
+import MergeArrayBars from "./MergeArrayBars";
 import MergeTree from "./MergeTree";
 import ControlPanel from "./ControlPanel";
 import StatCard from "../../../components/StatCard";
@@ -268,7 +268,7 @@ export default function AlgorithmVisualizer({
             });
         }
 
-    }, [currentStep, steps]);
+    }, [currentStep, steps, algorithm?.title]);
 
     const progress =
         steps.length > 0
