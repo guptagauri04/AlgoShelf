@@ -31,7 +31,7 @@ export default function MergeArrayBars({
 
         // ---------- Segment spacing ----------
         const isSegmentEnd = visibleSegments.some(
-          ([start, end]) => end === index
+          ([, end]) => end === index
         );
 
         return (
