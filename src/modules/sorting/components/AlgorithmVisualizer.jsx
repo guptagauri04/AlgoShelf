@@ -325,7 +325,7 @@ export default function AlgorithmVisualizer({
       });
     }
 
-  }, [currentStep, steps]);
+  }, [currentStep, steps, algorithm?.title]);
 
   const progress =
     steps.length > 0
@@ -335,7 +335,7 @@ export default function AlgorithmVisualizer({
   return (
     <section
       id="visualizer"
-      className="mx-auto max-w-7xl scroll-mt-24 px-8 py-24"
+      className="mx-auto max-w-7xl scroll-mt-24 px-4 sm:px-8 py-16 md:py-24"
     >
       {/* Heading */}
 

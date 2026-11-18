@@ -60,7 +60,7 @@ export default function ControlPanel({
   playing,
 }) {
   return (
-    <div className="flex flex-wrap items-center justify-center gap-4">
+    <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center gap-3 sm:gap-4">
       <Button
         icon={Shuffle}
         onClick={onShuffle}

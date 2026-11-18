@@ -76,7 +76,7 @@ function ShelfRow({ books, rotations }) {
     <div className="mb-28">
       {/* Books */}
 
-      <div className="flex justify-center items-end gap-14">
+      <div className="flex flex-wrap justify-center items-end gap-6 sm:gap-10 md:gap-14">
         {books.map((book, index) => (
           <div
             key={book.title}
@@ -90,7 +90,7 @@ function ShelfRow({ books, rotations }) {
       {/* Wooden Shelf */}
 
       <div className="mt-5 flex justify-center">
-        <div className="relative w-[790px]">
+        <div className="relative w-full max-w-[790px] px-2 sm:px-0">
           {/* Shelf Top */}
 
           <div className="h-6 rounded-md bg-gradient-to-b from-[#B7865A] via-[#98653F] to-[#6C4528]" />
