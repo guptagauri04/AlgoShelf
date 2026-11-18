@@ -1,5 +1,7 @@
 export function quickSortSteps(inputArray, pivotStrategy = "last") {
-  console.log("Pivot Strategy =", pivotStrategy);
+  if (!inputArray || inputArray.length === 0) {
+    return [];
+  }
   const array = [...inputArray];
 
   const steps = [];
@@ -145,14 +147,6 @@ export function quickSortSteps(inputArray, pivotStrategy = "last") {
     // Save the ORIGINAL pivot value before swapping
     const chosenPivotValue = array[chosenPivot];
 
-    console.log({
-      strategy: pivotStrategy,
-      chosenPivot,
-      high,
-      chosenValue: chosenPivotValue,
-      lastValue: array[high],
-    });
-
     if (chosenPivot !== high) {
       [array[chosenPivot], array[high]] = [
         array[high],
@@ -270,12 +264,10 @@ export function quickSortSteps(inputArray, pivotStrategy = "last") {
     }
     i++;
 
-    const left = array[i];
-    const right = array[high];
-
-    [array[i], array[high]] = [array[high], array[i]];
-
-    swaps++;
+    if (i !== high) {
+      [array[i], array[high]] = [array[high], array[i]];
+      swaps++;
+    }
 
     recordStep({
       currentLine: 8,

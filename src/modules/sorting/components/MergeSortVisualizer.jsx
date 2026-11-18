@@ -5,7 +5,7 @@ import {
     Scale,
     Activity,
 } from "lucide-react";
-import ArrayBars from "./ArrayBars";
+import MergeArrayBars from "./MergeArrayBars";
 import MergeTree from "./MergeTree";
 import ControlPanel from "./ControlPanel";
 import StatCard from "../../../components/StatCard";
@@ -179,6 +179,12 @@ export default function AlgorithmVisualizer({
 
         setCurrentLine(-1);
 
+        setCurrentPass(0);
+
+        setLeftIndex(-1);
+
+        setRightIndex(-1);
+
         setVisibleSegments([]);
 
         setPhase("divide");
@@ -224,56 +230,36 @@ export default function AlgorithmVisualizer({
 
     }, [playing, steps, speed]);
 
-    useEffect(() => {
+    const activeFrame = steps.length > 0 && currentStep < steps.length ? steps[currentStep] : null;
+    const isCompleted = steps.length > 0 && currentStep >= steps.length - 1;
 
-        if (steps.length === 0) return;
-
-        const frame = steps[currentStep];
-
-        if (!frame) return;
-
-        setArray(frame.array);
-
-        setComparing(frame.comparing);
-
-        setSorted(frame.sorted);
-
-        setComparisons(frame.comparisons);
-
-        setSwaps(frame.swaps);
-
-        setCurrentLine(frame.currentLine);
-
-        setMessage(frame.message);
-
-        setCurrentPass(frame.currentPass);
-
-        setLeftIndex(frame.leftIndex);
-
-        setRightIndex(frame.rightIndex);
-
-        setVisibleSegments(frame.visibleSegments || []);
-
-        setPhase(frame.phase || "divide");
-
-        if (currentStep >= steps.length - 1) {
-            setPlaying(false);
-
-            setMessage({
-                title: "Sorting Complete",
-                description:
-                    "The array is now fully sorted in ascending order.",
-                insight:
-                    `${algorithm.title} has finished. Every element is now in its correct position.`,
-            });
+    const displayArray = activeFrame ? activeFrame.array : array;
+    const displayComparing = activeFrame ? activeFrame.comparing : comparing;
+    const displaySorted = activeFrame ? activeFrame.sorted : sorted;
+    const displayComparisons = activeFrame ? activeFrame.comparisons : comparisons;
+    const displaySwaps = activeFrame ? activeFrame.swaps : swaps;
+    const displayCurrentLine = activeFrame ? activeFrame.currentLine : currentLine;
+    const displayCurrentPass = activeFrame ? activeFrame.currentPass : currentPass;
+    const displayLeftIndex = activeFrame ? activeFrame.leftIndex : leftIndex;
+    const displayRightIndex = activeFrame ? activeFrame.rightIndex : rightIndex;
+    const displaySegments = activeFrame ? (activeFrame.visibleSegments || []) : visibleSegments;
+    const displayPhase = activeFrame ? (activeFrame.phase || "divide") : phase;
+    const displayMessage = isCompleted
+        ? {
+            title: "Sorting Complete",
+            description: "The array is now fully sorted in ascending order.",
+            insight: `${algorithm.title} has finished. Every element is now in its correct position.`,
         }
-
-    }, [currentStep, steps]);
+        : activeFrame
+            ? activeFrame.message
+            : message;
 
     const progress =
-        steps.length > 0
+        steps.length > 1
             ? (currentStep / (steps.length - 1)) * 100
-            : 0;
+            : steps.length === 1
+                ? 100
+                : 0;
 
     return (
         <section
@@ -314,7 +300,9 @@ export default function AlgorithmVisualizer({
                         </p>
 
                         <p className="text-xs text-[#8C837B]">
-                            Pass {currentPass} of {array.length}
+                            {algorithm.id === "merge"
+                                ? `Recursion Level ${displayCurrentPass}`
+                                : `Pass ${displayCurrentPass} of ${displayArray.length}`}
                         </p>
 
                     </div>
@@ -341,11 +329,11 @@ export default function AlgorithmVisualizer({
                 <div className="rounded-3xl border border-[#E8DDD1] bg-white p-8">
 
                     <MergeArrayBars
-                        array={array}
-                        comparing={comparing}
-                        sorted={sorted}
-                        phase={phase}
-                        visibleSegments={visibleSegments}
+                        array={displayArray}
+                        comparing={displayComparing}
+                        sorted={displaySorted}
+                        phase={displayPhase}
+                        visibleSegments={displaySegments}
                     />
 
                     {/* Controls */}
@@ -373,10 +361,10 @@ export default function AlgorithmVisualizer({
 
                             <div className="mt-8">
                                 <MergeTree
-                                    array={array}
-                                    currentLevel={currentPass}
-                                    leftIndex={leftIndex}
-                                    rightIndex={rightIndex}
+                                    array={displayArray}
+                                    currentLevel={displayCurrentPass}
+                                    leftIndex={displayLeftIndex}
+                                    rightIndex={displayRightIndex}
                                 />
                             </div>
 
@@ -391,7 +379,7 @@ export default function AlgorithmVisualizer({
 
                     <PseudocodeSection
                         pseudocode={pseudocode}
-                        currentLine={currentLine}
+                        currentLine={displayCurrentLine}
                     />
 
                 </div>
@@ -400,7 +388,7 @@ export default function AlgorithmVisualizer({
 
             {/* Step Explanation */}
 
-            <StepExplanation message={message} />
+            <StepExplanation message={displayMessage} />
 
             {/* Statistics */}
 
@@ -408,7 +396,7 @@ export default function AlgorithmVisualizer({
 
                 <StatCard
                     title="Comparisons"
-                    value={comparisons}
+                    value={displayComparisons}
                     subtitle="Adjacent checks"
                     icon={Scale}
                 />
@@ -421,7 +409,7 @@ export default function AlgorithmVisualizer({
                                 ? "Writes"
                                 : "Swaps"
                     }
-                    value={swaps}
+                    value={displaySwaps}
                     subtitle={
                         algorithm.id === "insertion"
                             ? "Elements shifted"
@@ -440,8 +428,8 @@ export default function AlgorithmVisualizer({
                     }
                     value={
                         algorithm.id === "merge"
-                            ? currentPass
-                            : `${currentPass} / ${array.length}`
+                            ? displayCurrentPass
+                            : `${displayCurrentPass} / ${displayArray.length}`
                     }
                     subtitle={
                         algorithm.id === "merge"
@@ -523,6 +511,11 @@ export default function AlgorithmVisualizer({
                                 setComparing([]);
                                 setSorted([]);
                                 setCurrentLine(-1);
+                                setCurrentPass(0);
+                                setLeftIndex(-1);
+                                setRightIndex(-1);
+                                setVisibleSegments([]);
+                                setPhase("divide");
 
                                 setMessage({
                                     title: "Array Resized",

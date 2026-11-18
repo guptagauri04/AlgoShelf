@@ -60,9 +60,6 @@ export default function AlgorithmVisualizer({
 
   const [pivotIndex, setPivotIndex] = useState(-1);
 
-  const [chosenPivotValue, setChosenPivotValue] = useState(null);
-  const [chosenPivotOriginalIndex, setChosenPivotOriginalIndex] = useState(-1);
-
   const [pivotStrategy, setPivotStrategy] = useState("last");
 
   const [message, setMessage] = useState({
@@ -271,66 +268,43 @@ export default function AlgorithmVisualizer({
 
   }, [playing, steps, speed]);
 
-  useEffect(() => {
+  const activeFrame = steps.length > 0 && currentStep < steps.length ? steps[currentStep] : null;
+  const isCompleted = steps.length > 0 && currentStep >= steps.length - 1;
 
-    if (steps.length === 0) return;
-
-    const frame = steps[currentStep];
-
-    if (!frame) return;
-
-    setArray(frame.array);
-
-    setComparing(frame.comparing);
-
-    setSorted(frame.sorted);
-
-    setComparisons(frame.comparisons);
-
-    setSwaps(frame.swaps);
-
-    setCurrentLine(frame.currentLine);
-
-    setMessage(frame.message);
-
-    setCurrentPass(frame.currentPass);
-
-    setLeftIndex(frame.leftIndex);
-
-    setRightIndex(frame.rightIndex);
-
-    setPivotIndex(frame.pivotIndex ?? -1);
-
-    setChosenPivotValue(frame.chosenPivotValue ?? null);
-    setChosenPivotOriginalIndex(frame.chosenPivotOriginalIndex ?? -1);
-
-    setVisibleSegments(frame.visibleSegments || []);
-
-    setPhase(frame.phase || "divide");
-
-    setHeapSize(frame.heapSize ?? frame.array.length);
-    setCurrentNode(frame.currentNode ?? -1);
-    setLeftChild(frame.leftChild ?? -1);
-    setRightChild(frame.rightChild ?? -1);
-
-    if (currentStep >= steps.length - 1) {
-      setPlaying(false);
-
-      setMessage({
+  const displayArray = activeFrame ? activeFrame.array : array;
+  const displayComparing = activeFrame ? activeFrame.comparing : comparing;
+  const displaySorted = activeFrame ? activeFrame.sorted : sorted;
+  const displayComparisons = activeFrame ? activeFrame.comparisons : comparisons;
+  const displaySwaps = activeFrame ? activeFrame.swaps : swaps;
+  const displayCurrentLine = activeFrame ? activeFrame.currentLine : currentLine;
+  const displayCurrentPass = activeFrame ? activeFrame.currentPass : currentPass;
+  const displayLeftIndex = activeFrame ? activeFrame.leftIndex : leftIndex;
+  const displayRightIndex = activeFrame ? activeFrame.rightIndex : rightIndex;
+  const displayPivotIndex = activeFrame ? (activeFrame.pivotIndex ?? -1) : pivotIndex;
+  const displayChosenPivotValue = activeFrame ? (activeFrame.chosenPivotValue ?? null) : null;
+  const displayChosenPivotOriginalIndex = activeFrame ? (activeFrame.chosenPivotOriginalIndex ?? -1) : -1;
+  const displaySegments = activeFrame ? (activeFrame.visibleSegments || []) : visibleSegments;
+  const displayPhase = activeFrame ? (activeFrame.phase || "divide") : phase;
+  const displayHeapSize = activeFrame ? (activeFrame.heapSize ?? activeFrame.array.length) : heapSize;
+  const displayCurrentNode = activeFrame ? (activeFrame.currentNode ?? -1) : currentNode;
+  const displayLeftChild = activeFrame ? (activeFrame.leftChild ?? -1) : leftChild;
+  const displayRightChild = activeFrame ? (activeFrame.rightChild ?? -1) : rightChild;
+  const displayMessage = isCompleted
+    ? {
         title: "Sorting Complete",
-        description:
-          "The array is now fully sorted in ascending order.",
-        insight:
-          `${algorithm.title} has finished. Every element is now in its correct position.`,
-      });
-    }
-
-  }, [currentStep, steps]);
+        description: "The array is now fully sorted in ascending order.",
+        insight: `${algorithm.title} has finished. Every element is now in its correct position.`,
+      }
+    : activeFrame
+      ? activeFrame.message
+      : message;
 
   const progress =
-    steps.length > 0
+    steps.length > 1
       ? (currentStep / (steps.length - 1)) * 100
-      : 0;
+      : steps.length === 1
+        ? 100
+        : 0;
 
   return (
     <section
@@ -372,10 +346,10 @@ export default function AlgorithmVisualizer({
 
             <p className="text-xs text-[#8C837B]">
               {algorithm.id === "quick"
-                ? `Recursion ${currentPass}`
+                ? `Recursion ${displayCurrentPass}`
                 : algorithm.id === "merge"
-                  ? `Level ${currentPass}`
-                  : `Pass ${currentPass} of ${array.length}`}
+                  ? `Level ${displayCurrentPass}`
+                  : `Pass ${displayCurrentPass} of ${displayArray.length}`}
             </p>
 
           </div>
@@ -403,31 +377,31 @@ export default function AlgorithmVisualizer({
 
           {algorithm.id === "merge" ? (
             <MergeArrayBars
-              array={array}
-              comparing={comparing}
-              sorted={sorted}
-              phase={phase}
-              visibleSegments={visibleSegments}
+              array={displayArray}
+              comparing={displayComparing}
+              sorted={displaySorted}
+              phase={displayPhase}
+              visibleSegments={displaySegments}
             />
           ) : algorithm.id === "heap" ? (
             <HeapArrayBars
-              array={array}
-              comparing={comparing}
-              sorted={sorted}
-              heapSize={heapSize}
-              currentNode={currentNode}
-              leftChild={leftChild}
-              rightChild={rightChild}
+              array={displayArray}
+              comparing={displayComparing}
+              sorted={displaySorted}
+              heapSize={displayHeapSize}
+              currentNode={displayCurrentNode}
+              leftChild={displayLeftChild}
+              rightChild={displayRightChild}
             />
           ) : (
             <ArrayBars
               algorithm={algorithm}
-              array={array}
-              comparing={comparing}
-              sorted={sorted}
-              pivotIndex={pivotIndex}
-              leftIndex={leftIndex}
-              rightIndex={rightIndex}
+              array={displayArray}
+              comparing={displayComparing}
+              sorted={displaySorted}
+              pivotIndex={displayPivotIndex}
+              leftIndex={displayLeftIndex}
+              rightIndex={displayRightIndex}
             />
           )}
 
@@ -449,7 +423,7 @@ export default function AlgorithmVisualizer({
                   disabled={playing}
                 />
 
-                {chosenPivotValue !== null && (
+                {displayChosenPivotValue !== null && (
                   <div className="mt-5 rounded-2xl border border-[#E8DDD1] bg-[#FAF7F2] p-5">
                     <h4 className="mb-3 text-base font-semibold text-[#1F1B18]">
                       🎯 Pivot Information
@@ -464,12 +438,12 @@ export default function AlgorithmVisualizer({
 
                       <p>
                         <span className="font-semibold">Chosen Pivot:</span>{" "}
-                        {chosenPivotValue}
+                        {displayChosenPivotValue}
                       </p>
 
                       <p>
                         <span className="font-semibold">Original Index:</span>{" "}
-                        {chosenPivotOriginalIndex}
+                        {displayChosenPivotOriginalIndex}
                       </p>
                     </div>
                   </div>
@@ -493,10 +467,10 @@ export default function AlgorithmVisualizer({
 
                 <div className="mt-8">
                   <MergeTree
-                    array={array}
-                    currentLevel={currentPass}
-                    leftIndex={leftIndex}
-                    rightIndex={rightIndex}
+                    array={displayArray}
+                    currentLevel={displayCurrentPass}
+                    leftIndex={displayLeftIndex}
+                    rightIndex={displayRightIndex}
                   />
                 </div>
               </div>
@@ -510,7 +484,7 @@ export default function AlgorithmVisualizer({
 
           <PseudocodeSection
             pseudocode={pseudocode}
-            currentLine={currentLine}
+            currentLine={displayCurrentLine}
           />
 
         </div>
@@ -519,7 +493,7 @@ export default function AlgorithmVisualizer({
 
       {/* Step Explanation */}
 
-      <StepExplanation message={message} />
+      <StepExplanation message={displayMessage} />
 
       {/* Statistics */}
 
@@ -527,7 +501,7 @@ export default function AlgorithmVisualizer({
 
         <StatCard
           title="Comparisons"
-          value={comparisons}
+          value={displayComparisons}
           subtitle="Adjacent checks"
           icon={Scale}
         />
@@ -540,7 +514,7 @@ export default function AlgorithmVisualizer({
                 ? "Writes"
                 : "Swaps"
           }
-          value={swaps}
+          value={displaySwaps}
           subtitle={
             algorithm.id === "insertion"
               ? "Elements shifted"
@@ -563,12 +537,12 @@ export default function AlgorithmVisualizer({
           }
           value={
             algorithm.id === "merge"
-              ? currentPass
+              ? displayCurrentPass
               : algorithm.id === "quick"
-                ? currentPass
+                ? displayCurrentPass
                 : algorithm.id === "heap"
-                  ? heapSize
-                  : `${currentPass} / ${array.length}`
+                  ? displayHeapSize
+                  : `${displayCurrentPass} / ${displayArray.length}`
           }
           subtitle={
             algorithm.id === "merge"
