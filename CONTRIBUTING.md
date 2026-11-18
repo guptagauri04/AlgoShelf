@@ -51,7 +51,13 @@ Thank you for your interest in contributing to AlgoShelf! We welcome developers 
    git checkout -b feature/your-feature-name
    ```
 
-8. Make your changes and test them.
+8. Make your changes and verify them:
+
+   ```bash
+   npm run build
+   npm run lint
+   ```
+
 9. Commit your work:
 
    ```bash
