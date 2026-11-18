@@ -22,6 +22,10 @@ import LinearSearch from "./modules/searching/pages/LinearSearch";
 import ArraysHome from "./modules/arrays/pages/ArraysHome";
 import ArrayOperations from "./modules/arrays/pages/ArrayOperations";
 
+// Queues Module
+import QueuesHome from "./modules/queues/pages/QueuesHome";
+import QueuePage from "./modules/queues/pages/QueuePage";
+
 // Scroll Helper
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -52,6 +56,12 @@ function App() {
         <Route path="/learn/arrays" element={<ArraysHome />} />
         <Route path="/learn/arrays/operations" element={<ArrayOperations />} />
 
+        {/* Queues & Linear Structures */}
+        <Route path="/learn/queues" element={<QueuesHome />} />
+        <Route path="/learn/queues/operations" element={<QueuePage />} />
+        <Route path="/queues" element={<QueuesHome />} />
+        <Route path="/queues/operations" element={<QueuePage />} />
+
         {/* 404 */}
         <Route path="*" element={<NotFound />} />
       </Routes>
@@ -59,6 +69,4 @@ function App() {
   );
 }
 
-
 export default App;
-
