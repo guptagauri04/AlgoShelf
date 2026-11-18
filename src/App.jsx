@@ -26,6 +26,11 @@ import ArrayOperations from "./modules/arrays/pages/ArrayOperations";
 import LinkedListHome from "./modules/linked-list/pages/LinkedListHome";
 import LinkedListPage from "./modules/linked-list/pages/LinkedListPage";
 
+// Linear Structures (Stack & Queue)
+import LinearStructuresPage from "./modules/linear-structures/pages/LinearStructuresPage";
+import StackPage from "./modules/linear-structures/pages/StackPage";
+import QueuePage from "./modules/linear-structures/pages/QueuePage";
+
 // Scroll Helper
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -61,6 +66,13 @@ function App() {
         <Route path="/learn/linked-list/operations" element={<LinkedListPage />} />
         <Route path="/linked-list" element={<LinkedListHome />} />
         <Route path="/linked-list/operations" element={<LinkedListPage />} />
+
+        {/* Stack & Queue (Linear Structures) */}
+        <Route path="/learn/linear-structures" element={<LinearStructuresPage />} />
+        <Route path="/learn/stack" element={<StackPage />} />
+        <Route path="/stack" element={<StackPage />} />
+        <Route path="/learn/queue" element={<QueuePage />} />
+        <Route path="/queue" element={<QueuePage />} />
 
         {/* 404 */}
         <Route path="*" element={<NotFound />} />

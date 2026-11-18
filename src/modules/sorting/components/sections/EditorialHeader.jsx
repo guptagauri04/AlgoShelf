@@ -3,8 +3,6 @@ import SortingIllustration from "../ui/SortingIllustration";
 import {
     ArrowDown,
     BookOpen,
-    ArrowLeft,
-    Library,
 } from "lucide-react";
 
 export default function EditorialHeader() {
@@ -13,11 +11,6 @@ export default function EditorialHeader() {
             behavior: "smooth",
             block: "start",
         });
-    };
-
-    const backToShelf = () => {
-        sessionStorage.setItem("scrollToBookshelf", "true");
-        window.location.href = "/";
     };
 
     return (
