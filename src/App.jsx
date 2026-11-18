@@ -22,6 +22,10 @@ import LinearSearch from "./modules/searching/pages/LinearSearch";
 import ArraysHome from "./modules/arrays/pages/ArraysHome";
 import ArrayOperations from "./modules/arrays/pages/ArrayOperations";
 
+// Stacks Module
+import StacksHome from "./modules/stacks/pages/StacksHome";
+import StackPage from "./modules/stacks/pages/StackPage";
+
 // Scroll Helper
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -52,6 +56,12 @@ function App() {
         <Route path="/learn/arrays" element={<ArraysHome />} />
         <Route path="/learn/arrays/operations" element={<ArrayOperations />} />
 
+        {/* Stacks */}
+        <Route path="/learn/stacks" element={<StacksHome />} />
+        <Route path="/learn/stacks/operations" element={<StackPage />} />
+        <Route path="/stacks" element={<StacksHome />} />
+        <Route path="/stacks/operations" element={<StackPage />} />
+
         {/* 404 */}
         <Route path="*" element={<NotFound />} />
       </Routes>
@@ -59,6 +69,4 @@ function App() {
   );
 }
 
-
 export default App;
-
