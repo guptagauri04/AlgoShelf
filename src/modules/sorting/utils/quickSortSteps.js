@@ -270,9 +270,6 @@ export function quickSortSteps(inputArray, pivotStrategy = "last") {
     }
     i++;
 
-    const left = array[i];
-    const right = array[high];
-
     [array[i], array[high]] = [array[high], array[i]];
 
     swaps++;
