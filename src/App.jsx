@@ -26,6 +26,10 @@ import ArrayOperations from "./modules/arrays/pages/ArrayOperations";
 import LinkedListHome from "./modules/linked-list/pages/LinkedListHome";
 import LinkedListPage from "./modules/linked-list/pages/LinkedListPage";
 
+// Trees Module
+import TreesHome from "./modules/trees/pages/TreesHome";
+import BSTOperations from "./modules/trees/pages/BSTOperations";
+
 // Scroll Helper
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -61,6 +65,10 @@ function App() {
         <Route path="/learn/linked-list/operations" element={<LinkedListPage />} />
         <Route path="/linked-list" element={<LinkedListHome />} />
         <Route path="/linked-list/operations" element={<LinkedListPage />} />
+
+        {/* Trees */}
+        <Route path="/learn/trees" element={<TreesHome />} />
+        <Route path="/learn/trees/bst" element={<BSTOperations />} />
 
         {/* 404 */}
         <Route path="*" element={<NotFound />} />
