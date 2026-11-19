@@ -35,6 +35,13 @@ export default function Footer() {
           </Link>
 
           <Link
+            to="/arrays/traversal"
+            className="transition-colors hover:text-[#A1764E]"
+          >
+            Arrays
+          </Link>
+
+          <Link
             to="/sorting"
             className="transition-colors hover:text-[#A1764E]"
           >
