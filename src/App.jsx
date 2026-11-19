@@ -22,6 +22,11 @@ import LinearSearch from "./modules/searching/pages/LinearSearch";
 import ArraysHome from "./modules/arrays/pages/ArraysHome";
 import ArrayOperations from "./modules/arrays/pages/ArrayOperations";
 
+// Graph Module
+import GraphsHome from "./modules/graphs/pages/GraphsHome";
+import GraphTraversalPage from "./modules/graphs/pages/GraphTraversalPage";
+import DijkstraPage from "./modules/graphs/pages/DijkstraPage";
+
 // Linked List Module
 import LinkedListHome from "./modules/linked-list/pages/LinkedListHome";
 import LinkedListPage from "./modules/linked-list/pages/LinkedListPage";
@@ -61,6 +66,11 @@ function App() {
         <Route path="/learn/linked-list/operations" element={<LinkedListPage />} />
         <Route path="/linked-list" element={<LinkedListHome />} />
         <Route path="/linked-list/operations" element={<LinkedListPage />} />
+
+        {/* Graphs */}
+        <Route path="/learn/graphs" element={<GraphsHome />} />
+        <Route path="/learn/graphs/traversals" element={<GraphTraversalPage />} />
+        <Route path="/learn/graphs/dijkstra" element={<DijkstraPage />} />
 
         {/* 404 */}
         <Route path="*" element={<NotFound />} />
