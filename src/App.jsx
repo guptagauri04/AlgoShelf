@@ -22,6 +22,11 @@ import LinearSearch from "./modules/searching/pages/LinearSearch";
 import ArraysHome from "./modules/arrays/pages/ArraysHome";
 import ArrayOperations from "./modules/arrays/pages/ArrayOperations";
 
+// Stacks & Queues Module
+import StacksQueuesHome from "./modules/stacks-queues/pages/StacksQueuesHome";
+import StackPage from "./modules/stacks-queues/pages/StackPage";
+import QueuePage from "./modules/stacks-queues/pages/QueuePage";
+
 // Linked List Module
 import LinkedListHome from "./modules/linked-list/pages/LinkedListHome";
 import LinkedListPage from "./modules/linked-list/pages/LinkedListPage";
@@ -55,6 +60,11 @@ function App() {
         {/* Arrays */}
         <Route path="/learn/arrays" element={<ArraysHome />} />
         <Route path="/learn/arrays/operations" element={<ArrayOperations />} />
+
+        {/* Stacks & Queues */}
+        <Route path="/learn/stacks-queues" element={<StacksQueuesHome />} />
+        <Route path="/learn/stacks" element={<StackPage />} />
+        <Route path="/learn/queues" element={<QueuePage />} />
 
         {/* Linked Lists */}
         <Route path="/learn/linked-list" element={<LinkedListHome />} />
