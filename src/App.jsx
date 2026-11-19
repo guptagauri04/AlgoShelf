@@ -22,6 +22,11 @@ import LinearSearch from "./modules/searching/pages/LinearSearch";
 import ArraysHome from "./modules/arrays/pages/ArraysHome";
 import ArrayOperations from "./modules/arrays/pages/ArrayOperations";
 
+// Trees Module
+import TreesHome from "./modules/trees/pages/TreesHome";
+import BSTPage from "./modules/trees/pages/BSTPage";
+import TreeTraversalsPage from "./modules/trees/pages/TreeTraversalsPage";
+
 // Linked List Module
 import LinkedListHome from "./modules/linked-list/pages/LinkedListHome";
 import LinkedListPage from "./modules/linked-list/pages/LinkedListPage";
@@ -55,6 +60,11 @@ function App() {
         {/* Arrays */}
         <Route path="/learn/arrays" element={<ArraysHome />} />
         <Route path="/learn/arrays/operations" element={<ArrayOperations />} />
+
+        {/* Trees */}
+        <Route path="/learn/trees" element={<TreesHome />} />
+        <Route path="/learn/trees/bst" element={<BSTPage />} />
+        <Route path="/learn/trees/traversals" element={<TreeTraversalsPage />} />
 
         {/* Linked Lists */}
         <Route path="/learn/linked-list" element={<LinkedListHome />} />
