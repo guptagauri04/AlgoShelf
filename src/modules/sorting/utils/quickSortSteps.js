@@ -1,5 +1,4 @@
 export function quickSortSteps(inputArray, pivotStrategy = "last") {
-  console.log("Pivot Strategy =", pivotStrategy);
   const array = [...inputArray];
 
   const steps = [];
@@ -269,9 +268,6 @@ export function quickSortSteps(inputArray, pivotStrategy = "last") {
       }
     }
     i++;
-
-    const left = array[i];
-    const right = array[high];
 
     [array[i], array[high]] = [array[high], array[i]];
 

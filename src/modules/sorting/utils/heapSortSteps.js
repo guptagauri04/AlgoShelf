@@ -63,28 +63,6 @@ export function heapSortSteps(inputArray) {
         },
     });
 
-    // Heapify logic comes next...
-
-    // -----------------------
-    // Extract Maximum
-    // -----------------------
-
-    recordStep({
-        currentLine: 6,
-        phase: "extract",
-
-        message: {
-            title: "Extract Maximum",
-            description:
-                "Move the root element to its final sorted position.",
-            insight:
-                "After each extraction, the sorted portion grows from the right.",
-        },
-    });
-
-    // -----------------------
-    // Build Max Heap
-    // -----------------------
     for (let i = Math.floor(array.length / 2) - 1; i >= 0; i--) {
         heapify(array.length, i);
     }

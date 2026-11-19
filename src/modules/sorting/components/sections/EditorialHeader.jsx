@@ -1,11 +1,6 @@
 import { motion } from "framer-motion";
 import SortingIllustration from "../ui/SortingIllustration";
-import {
-    ArrowDown,
-    BookOpen,
-    ArrowLeft,
-    Library,
-} from "lucide-react";
+import { ArrowDown, BookOpen } from "lucide-react";
 
 export default function EditorialHeader() {
     const scrollToChapters = () => {
@@ -13,11 +8,6 @@ export default function EditorialHeader() {
             behavior: "smooth",
             block: "start",
         });
-    };
-
-    const backToShelf = () => {
-        sessionStorage.setItem("scrollToBookshelf", "true");
-        window.location.href = "/";
     };
 
     return (

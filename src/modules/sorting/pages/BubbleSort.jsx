@@ -2,7 +2,6 @@ import AlgorithmLayout from "../layouts/AlgorithmLayout";
 
 import AlgorithmHero from "../components/sections/AlgorithmHero";
 import OverviewSection from "../components/sections/OverviewSection";
-import IntuitionSection from "../components/sections/IntuitionSection";
 import ComplexitySection from "../components/sections/ComplexitySection";
 
 import AlgorithmVisualizer from "../components/AlgorithmVisualizer";

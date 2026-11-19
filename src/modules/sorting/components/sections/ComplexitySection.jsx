@@ -16,6 +16,9 @@ export default function ComplexitySection({ algorithm, complexity }) {
     
      quick:
       "Quick Sort partitions the array around a pivot and recursively sorts the resulting subarrays. It delivers excellent average-case performance, though poor pivot choices can degrade it to O(n²).",
+
+    heap:
+      "Heap Sort converts the array into a max-heap and repeatedly extracts the root. It guarantees consistent O(n log n) running time across all cases while maintaining O(1) in-place auxiliary space.",
   };
 
   return (

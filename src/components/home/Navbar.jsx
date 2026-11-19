@@ -1,11 +1,52 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import logo from "../../assets/logo.svg";
+
+const navItemClass =
+  "group relative text-[15px] font-medium tracking-[0.08em] text-[#4B433D] transition-all duration-300 hover:text-[#A1764E]";
+
+function NavItem({ children, to, onClick }) {
+  const content = (
+    <>
+      {children}
+      <span
+        className="
+          absolute
+          left-1/2
+          -bottom-1
+          h-[2px]
+          w-0
+          -translate-x-1/2
+          rounded-full
+          bg-[#A1764E]
+          transition-all
+          duration-300
+          group-hover:w-full
+        "
+      />
+    </>
+  );
+
+  return (
+    <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }}>
+      {to ? (
+        <Link to={to} className={navItemClass}>
+          {content}
+        </Link>
+      ) : (
+        <button onClick={onClick} className={navItemClass}>
+          {content}
+        </button>
+      )}
+    </motion.div>
+  );
+}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -22,7 +63,7 @@ export default function Navbar() {
         behavior: "smooth",
       });
     } else {
-      window.location.href = "/";
+      navigate("/");
     }
   };
 
@@ -34,53 +75,9 @@ export default function Navbar() {
       });
     } else {
       sessionStorage.setItem("scrollToBookshelf", "true");
-      window.location.href = "/";
+      navigate("/");
     }
   };
-
-  const navItem =
-    "group relative text-[15px] font-medium tracking-[0.08em] text-[#4B433D] transition-all duration-300 hover:text-[#A1764E]";
-
-  function NavItem({ children, to, onClick }) {
-    const content = (
-      <>
-        {children}
-
-        <span
-          className="
-            absolute
-            left-1/2
-            -bottom-1
-            h-[2px]
-            w-0
-            -translate-x-1/2
-            rounded-full
-            bg-[#A1764E]
-            transition-all
-            duration-300
-            group-hover:w-full
-          "
-        />
-      </>
-    );
-
-    return (
-      <motion.div
-        whileHover={{ y: -2 }}
-        whileTap={{ scale: 0.97 }}
-      >
-        {to ? (
-          <Link to={to} className={navItem}>
-            {content}
-          </Link>
-        ) : (
-          <button onClick={onClick} className={navItem}>
-            {content}
-          </button>
-        )}
-      </motion.div>
-    );
-  }
 
   return (
     <header

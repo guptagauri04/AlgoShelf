@@ -1,10 +1,13 @@
 import { ArrowLeft, Library } from "lucide-react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 export default function BackToShelf() {
+  const navigate = useNavigate();
+
   const handleClick = () => {
     sessionStorage.setItem("scrollToBookshelf", "true");
-    window.location.href = "/";
+    navigate("/");
   };
 
   return (

@@ -279,6 +279,7 @@ export default function AlgorithmVisualizer({
 
     if (!frame) return;
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setArray(frame.array);
 
     setComparing(frame.comparing);
@@ -325,7 +326,7 @@ export default function AlgorithmVisualizer({
       });
     }
 
-  }, [currentStep, steps]);
+  }, [currentStep, steps, algorithm.title]);
 
   const progress =
     steps.length > 0
