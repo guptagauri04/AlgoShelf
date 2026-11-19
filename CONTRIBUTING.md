@@ -5,7 +5,7 @@ Thank you for your interest in contributing to AlgoShelf! We welcome developers 
 ## Getting Started
 
 ### Prerequisites
-- Node.js
+- Node.js 20.19+ or 22.12+ (an LTS release is recommended)
 - npm
 - Git
 - A GitHub account
@@ -51,7 +51,13 @@ Thank you for your interest in contributing to AlgoShelf! We welcome developers 
    git checkout -b feature/your-feature-name
    ```
 
-8. Make your changes and test them.
+8. Make your changes and test them:
+
+   ```bash
+   npm run build   # the production build must succeed
+   npm run lint    # do not introduce new ESLint errors or warnings
+   ```
+
 9. Commit your work:
 
    ```bash
@@ -83,6 +89,7 @@ Thank you for your interest in contributing to AlgoShelf! We welcome developers 
 - Test your changes before submitting a pull request.
 - Include screenshots or explanations for UI changes.
 - Do not submit unfinished or non-functional features.
+- Keep documentation accurate: never describe an unimplemented feature as finished, and update the README when behaviour, scripts or folder layout change.
 - Communicate with the mentor if you need clarification.
 - Avoid working on an issue that has already been assigned to another contributor.
 
